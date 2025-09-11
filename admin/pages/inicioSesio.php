@@ -61,7 +61,7 @@ if ($_POST) {
                 <br><br><br>
                 <div class="card">
                     <div class="card-header">
-                        Inicio de sesion Administrador
+                        Inicio de sesion 
                     </div>
                     <div class="card-body">
                         <?php if (isset($mensaje)) { ?>
