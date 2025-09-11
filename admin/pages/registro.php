@@ -1,58 +1,39 @@
-<?php
-session_start();
-
-// Generar token CSRF simple
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
-// Mensajes flash (opcionales)
-$flash = $_SESSION['flash'] ?? null;
-unset($_SESSION['flash']);
-?>
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Registro</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width:600px; margin:auto; }
-    input { display:block; margin-bottom:10px; padding:8px; width:100%; box-sizing:border-box; }
-    .error { color: #b00020; }
-    .success { color: #006400; }
-  </style>
+    <meta charset='utf-8'>
+    <title>Registrate</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../Estilo/style5.css'>
 </head>
 <body>
-  <h1>Registro de usuario</h1>
+    <div class="Login-Contenedor">
+        <form action="procesar_registro.php" method="POST">
+            <h2>CREAR CUENTA</h2>
+            <div class="Contenedor">
+                <img src="../Assets/Usuario.png">
+            </div>
 
-  <?php if ($flash): ?>
-    <p class="<?= htmlspecialchars($flash['type']) ?>"><?= htmlspecialchars($flash['msg']) ?></p>
-  <?php endif; ?>
+            <label for="Nombre">Nombre</label>
+            <input type="text" id="Nombre" name="Nombre" required>
 
-  <form action="process_register.php" method="post" novalidate>
-    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-    <label>
-      Usuario (solo letras, números y guiones bajos):
-      <input type="text" name="username" required maxlength="50" pattern="[A-Za-z0-9_]+" title="Solo letras, números y guiones bajos">
-    </label>
+            <label for="Apellido">Apellido</label>
+            <input type="text" id="Apellido" name="Apellido" required>
 
-    <label>
-      Correo electrónico:
-      <input type="email" name="email" required maxlength="255">
-    </label>
+            <label for="Contrasena">Contraseña</label>
+            <input type="password" id="Contrasena" name="Contrasena" required>
 
-    <label>
-      Contraseña (mínimo 8 caracteres):
-      <input type="password" name="password" required minlength="8">
-    </label>
+            <label for="Correo">Correo</label>
+            <input type="email" id="Correo" name="Correo" required>
 
-    <label>
-      Confirmar contraseña:
-      <input type="password" name="password_confirm" required minlength="8">
-    </label>
+            <label for="Telefono">Teléfono</label>
+            <input type="text" id="Telefono" name="Telefono" required>
 
-    <button type="submit">Registrar</button>
-  </form>
+            <label for="Fechadenacimiento">Fecha de Nacimiento</label>
+            <input type="date" id="Fechadenacimiento" name="Fechadenacimiento" required>
+
+            <button type="submit">Registrar Usuario</button>
+        </form>
+    </div>
 </body>
 </html>
